@@ -1,6 +1,4 @@
-import java.awt.*;
 import java.awt.image.BufferedImage;
-
 public class Shape {
 
     private BufferedImage block;
@@ -8,7 +6,8 @@ public class Shape {
     private Board board;
     private int deltaX = 0;
     private int x, y;
-    private int normalSpeed = 600, speedDown = 60, currentSpeed;
+    private int normalSpeed = 600, speedDown = 60;
+    private int currentSpeed;
     private long time, lastTime;
     private boolean collision = false, sideCollision = false;
     private int color;
@@ -75,16 +74,6 @@ public class Shape {
         sideCollision = true;
     }
 
-    public void render(Graphics g){
-
-        for (int row = 0; row < coords.length; row++)
-            for (int col = 0; col < coords[row].length; col++)
-                if (coords[row][col] != 0)
-                    g.drawImage(block, col*board.getBlockSize() + x*board.getBlockSize(),
-                            row*board.getBlockSize() + y*board.getBlockSize(), null);
-
-    }
-
     private  void checkLine(){
         int height = board.getBoard().length - 1;
 
@@ -137,18 +126,18 @@ public class Shape {
 
     }
 
-    private int[][] getReverseMatrix(int[][] matrix){
-        int middle = matrix.length/2;
+   private int[][] getReverseMatrix(int[][] matrix){
+       int middle = matrix.length/2;
 
-        for (int i = 0; i < middle; i++){
-            int[] m = matrix[i];
-            matrix[i] = matrix[matrix.length - i - 1];
-            matrix[matrix.length - i - 1] = m;
-        }
+       for (int i = 0; i < middle; i++){
+           int[] m = matrix[i];
+           matrix[i] = matrix[matrix.length - i - 1];
+           matrix[matrix.length - i - 1] = m;
+       }
 
-        return matrix;
+       return matrix;
 
-    }
+   }
 
     public void setDeltaX(int deltaX) {
         this.deltaX = deltaX;
@@ -173,4 +162,13 @@ public class Shape {
     public int getColor() {
         return color;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
 }

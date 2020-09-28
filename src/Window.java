@@ -4,6 +4,7 @@ public class Window {
     public static final int WIDTH = 305, HEIGHT = 630;
     private JFrame window;
     private Board board;
+    private Draw draw;
 
     public Window() {    //Constructor
         window = new JFrame("Tetris Game");
@@ -14,8 +15,10 @@ public class Window {
 
         board = new Board();
 
-        window.add(board);
-        window.addKeyListener(board);
+        draw = new Draw(board);
+
+        window.add(draw);
+        window.addKeyListener(draw);
 
         window.setVisible(true);
     }
